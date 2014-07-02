@@ -82,7 +82,7 @@ LogRemoteCommands=1
 <% if has_variable?('zabbix_proxy') -%>
 Server=<%= zabbix_proxy %>, <%= zabbix_server %>
 <% else -%>
-Server=<%= zabbix_server %>
+Server=<%= @zabbix_server %>
 <% end -%>
 
 ### Option: Hostname
@@ -94,7 +94,7 @@ Server=<%= zabbix_server %>
 # Default:
 # Hostname=system.hostname
 
-Hostname=<%= fqdn %>
+Hostname=<%= @fqdn %>
 
 ### Option: HostnameItem
 #	Item used for generating Hostname if it is undefined.
@@ -117,7 +117,7 @@ Hostname=<%= fqdn %>
 #
 # Mandatory: no
 # Default:
-ListenIP=<%= ipaddress %>
+ListenIP=<%= @ipaddress %>
 
 ### Option: DisablePassive
 #	Disable passive checks. The agent will not listen on any TCP port.
