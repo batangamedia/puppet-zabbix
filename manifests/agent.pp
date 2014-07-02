@@ -5,7 +5,6 @@ class zabbix::agent inherits zabbix {
     package {
         "zabbix-agent":
             ensure	=> installed,
-			require	=> Yumrepo['itsc']
     }
 
     file {
@@ -27,6 +26,7 @@ class zabbix::agent inherits zabbix {
 
     service {
         "zabbix_agentd":
+		name => 'zabbix-agent',
             enable 		=> true,
             ensure 		=> running,
 			hasstatus	=> false,
