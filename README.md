@@ -49,6 +49,18 @@ Additional user parameters can be added by use of a definition.  Below is an exa
 	}			
 ```
 
+### DIRTY HACK for now: Adding user script files ###
+
+Additional user scripts can be added by use of a definition.  Below is an example of how to add a user script file to a node
+
+```ruby
+    zabbix::userscript {
+      'php-fpm-check.sh':
+        ensure => present,
+        source => 'puppet:///modules/btngphp/php-fpm-check.sh'
+    }
+```
+
 I've included an example userparameter file '''files/userparameter_mounted.conf''' as an example
 
 ### Added mysql checks to node ###
