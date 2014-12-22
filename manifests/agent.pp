@@ -7,6 +7,10 @@ class zabbix::agent inherits zabbix {
         require => Apt::Source['dotdeb']
     }
 
+    # not really pretty,
+    $zabbix_server = hiera('zabbix_server')
+    notify{ "el zbx es: ${zabbix_server}":}
+
     file {
         $zabbix_userparameter_config_dir:
             ensure 	=> directory,
@@ -20,18 +24,18 @@ class zabbix::agent inherits zabbix {
             group 	=> root,
             mode 	=> 644,
             content => template("zabbix/zabbix_agentd_conf.erb"),
-			notify	=> Service['zabbix_agentd'],
+			      notify	=> Service['zabbix_agentd'],
             require => [ Package["zabbix-agent"], File["$zabbix_config_dir"] ];
-	}
+  	}
 
     service {
         "zabbix_agentd":
-		name => 'zabbix-agent',
-            enable 		=> true,
-            ensure 		=> running,
-			hasstatus	=> false,
-			hasrestart	=> true,
-            require 	=> [ Package["zabbix-agent"], File["$zabbix_config_dir"], File["$zabbix_log_dir"], File["$zabbix_pid_dir"] ];
+		      name => 'zabbix-agent',
+          enable 		=> true,
+          ensure 		=> running,
+			    hasstatus	=> false,
+			    hasrestart	=> true,
+          require 	=> [ Package["zabbix-agent"], File["$zabbix_config_dir"], File["$zabbix_log_dir"], File["$zabbix_pid_dir"] ];
     }
 	
 }
