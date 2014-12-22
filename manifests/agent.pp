@@ -9,7 +9,6 @@ class zabbix::agent inherits zabbix {
 
     # not really pretty,
     $zabbix_server = hiera('zabbix_server')
-    notify{ "el zbx es: ${zabbix_server}":}
 
     file {
         $zabbix_userparameter_config_dir:
