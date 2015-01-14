@@ -42,12 +42,13 @@ class zabbix {
 		password    => '!!',
 		shell       => '/bin/bash',
 		gid			=> 'zabbix',
-		managehome	=> 'true',	
+		managehome	=> 'true',
+    require => Class['btngbase']
 	}
 	
 	group { 'zabbix':
 		ensure  => 'present',
-    require => Group['batanga']
+    require => Class['btngbase']
 	}
 }
 
