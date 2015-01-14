@@ -8,7 +8,7 @@ class zabbix::agent inherits zabbix {
     }
 
     # not really pretty,
-    $zabbix_server = hiera('zabbix_server')
+    $zabbix_server = hiera('zabbix_server', false)
 
     file {
         $zabbix_userparameter_config_dir:
@@ -27,10 +27,16 @@ class zabbix::agent inherits zabbix {
             require => [ Package["zabbix-agent"], File["$zabbix_config_dir"] ];
   	}
 
+    if $zabbix_server {
+      $zabbix_agent_status = true
+    } else {
+      $zabbix_agent_status = false
+    }
+
     service {
         "zabbix_agentd":
 		      name => 'zabbix-agent',
-          enable 		=> true,
+          enable 		=> $zabbix_agent_status,
           ensure 		=> running,
 			    hasstatus	=> false,
 			    hasrestart	=> true,
