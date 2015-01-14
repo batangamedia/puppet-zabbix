@@ -43,12 +43,12 @@ class zabbix {
 		shell       => '/bin/bash',
 		gid			=> 'zabbix',
 		managehome	=> 'true',
-    require => Class['btngbase']
+    uid => 3003
 	}
 	
 	group { 'zabbix':
 		ensure  => 'present',
-    require => Class['btngbase']
+    gid => 3003
 	}
 }
 
