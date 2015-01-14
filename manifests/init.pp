@@ -46,7 +46,8 @@ class zabbix {
 	}
 	
 	group { 'zabbix':
-		ensure => 'present',
+		ensure  => 'present',
+    require => Group['batanga']
 	}
 }
 
