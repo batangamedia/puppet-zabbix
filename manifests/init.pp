@@ -32,7 +32,7 @@ class zabbix {
             owner 	=> zabbix,
             group 	=> zabbix,
             mode 	=> 700,
-			require => User["zabbix"];
+			      require => User["zabbix"];
 
 	}
 
