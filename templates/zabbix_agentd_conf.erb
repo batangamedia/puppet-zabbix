@@ -81,8 +81,10 @@ LogRemoteCommands=1
 
 <% if has_variable?('zabbix_proxy') -%>
 Server=<%= zabbix_proxy %>, <%= zabbix_server %>
+ServerActive=<%= zabbix_proxy %>, <%= zabbix_server %>
 <% else -%>
 Server=<%= @zabbix_server %>
+ServerActive=<%= @zabbix_server %>
 <% end -%>
 
 ### Option: Hostname
