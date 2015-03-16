@@ -38,7 +38,7 @@ class zabbix::agent inherits zabbix {
           name => 'zabbix-agent',
           enable     => $zabbix_agent_enabled,
           ensure     => running,
-          hasstatus  => false,
+          hasstatus  => true,
           hasrestart => true,
           require    => [ Package['zabbix-agent'], File[$zabbix_config_dir], File[$zabbix_log_dir], File[$zabbix_pid_dir] ];
     }
