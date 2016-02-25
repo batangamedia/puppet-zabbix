@@ -1,8 +1,8 @@
 define zabbix::userscript (
-	$ensure=present,
-  $content="",
-  $source="",
-	$user_params=false
+	$ensure       = present,
+	$content      = "",
+	$source       = "",
+	$user_params  = false
 ) {
 
 	include zabbix::params
@@ -13,6 +13,15 @@ define zabbix::userscript (
 			group   => "zabbix",
 			owner 	=> "zabbix",
 			mode    => 755
+		}
+	}
+
+	if ! defined(File[$zabbix::params::zabbix_userscript_log_dir]){
+		file { $zabbix::params::zabbix_userscript_log_dir:
+			ensure  => directory,
+			group   => "zabbix",
+			owner 	=> "zabbix",
+			mode    => 777
 		}
 	}
 
